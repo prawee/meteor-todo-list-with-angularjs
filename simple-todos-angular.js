@@ -72,6 +72,13 @@ Meteor.methods({
     },
     setChecked:function(taskId,setChecked){
         Tasks.update(taskId,{$set:{checked:setChecked}});
+    },
+    setPrivate:function(taskId,setToPrivate){
+        var task=Tasks.findOne(taskId);
+        if(task.owner!==Meteor.userId()){
+            throw new Meteor.Error('not-authorized');
+        }
+        Tasks.update(taskId,{$set:{private:setToPrivate}});
     }
 });
 
