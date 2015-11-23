@@ -60,8 +60,8 @@ Meteor.methods({
     deleteTask:function(taskId){
         Tasks.remove(taskId);
     },
-    setChecked:function(){
-
+    setChecked:function(taskId,setChecked){
+        Tasks.update(taskId,{$set:{checked:setChecked}});
     }
 });
 
