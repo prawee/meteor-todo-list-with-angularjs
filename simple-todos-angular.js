@@ -44,7 +44,11 @@ if (Meteor.isClient) {
 
             $scope.deleteTask=function(task){
                 $meteor.call('deleteTask',task._id);
-            }
+            };
+
+            $scope.setChecked=function(task){
+                $meteor.call('setChecked',task._id,!task.checked);
+            };
         }
     ]);
 }
