@@ -26,7 +26,7 @@
             <li ng-repeat="task in tasks" ng-class="{'checked':task.checked}">
                 <button class="delete" ng-click="deleteTask(task)">&times</button>
 
-                <input type="checkbox" ng-model="task.checked" class="toggle-checked" />
+                <input type="checkbox" ng-click="setChecked(task)" ng-checked="task.checked" class="toggle-checked" />
 
                 <span class="text"><strong>{{task.username}}</strong> - {{task.text}}</span>
             </li>
