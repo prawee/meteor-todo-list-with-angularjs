@@ -51,6 +51,10 @@ if (Meteor.isClient) {
             $scope.setChecked=function(task){
                 $meteor.call('setChecked',task._id,!task.checked);
             };
+
+            $scope.setPrivate=function(task){
+                $meteor.call('setPrivate',task._id,!task.private);
+            };
         }
     ]);
 }
