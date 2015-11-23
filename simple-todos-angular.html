@@ -13,7 +13,11 @@
             </form>
         </header>
         <ul>
-            <li ng-repeat="task in tasks">{{task.text}}</li>
+            <li ng-repeat="task in tasks" ng-class="{'checked':task.checked}">
+                <button class="delete" ng-click="tasks.remove(task)">&times</button>
+
+                <span class="text">{{task.text}}</span>
+            </li>
         </ul>
     </div>
 </body>
