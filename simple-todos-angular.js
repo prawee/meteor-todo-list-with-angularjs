@@ -16,6 +16,8 @@ if (Meteor.isClient) {
                 {text:'This is task 3'}
             ]*/
 
+            $scope.$meteorSubscribe('tasks');
+
             //$scope.tasks=$meteor.collection(Tasks);
             $scope.tasks=$meteor.collection(function(){
                 return Tasks.find($scope.getReactively('query'),{sort:{createdAt:-1}});
@@ -74,7 +76,7 @@ Meteor.methods({
 });
 
 if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
+  Meteor.publish('tasks',function(){
+      return Tasks.find();
   });
 }
