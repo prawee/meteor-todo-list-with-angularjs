@@ -29,6 +29,10 @@ if (Meteor.isClient) {
                 else
                     $scope.query={};
             });
+
+            $scope.incompleteCount=function(){
+                return Tasks.find({checked:{$ne:true}}).count();
+            };
         }
     ]);
 }
