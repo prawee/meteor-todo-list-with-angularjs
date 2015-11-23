@@ -11,6 +11,13 @@ if (Meteor.isClient) {
                 {text:'This is task 3'}
             ]*/
             $scope.tasks=$meteor.collection(Tasks);
+
+            $scope.addTask=function(newTask){
+                $scope.tasks.push({
+                    text:newTask,
+                    createdAt:new Date()
+                });
+            };
         }
     ]);
 }

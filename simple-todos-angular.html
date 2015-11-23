@@ -8,6 +8,9 @@
          ng-controller="TodosListCtrl">
         <header>
             <h1>Todo List</h1>
+            <form class="new-task" ng-submit="addTask(newTask); newTask='';">
+                <input ng-model="newTask" type="text" name="text" placeholder="Type to add new tasks" />
+            </form>
         </header>
         <ul>
             <li ng-repeat="task in tasks">{{task.text}}</li>
