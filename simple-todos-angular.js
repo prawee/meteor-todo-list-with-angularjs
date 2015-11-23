@@ -13,7 +13,7 @@ if (Meteor.isClient) {
 
             //$scope.tasks=$meteor.collection(Tasks);
             $scope.tasks=$meteor.collection(function(){
-                return Tasks.find({},{sort:{createdAt:-1}});
+                return Tasks.find($scope.query,{sort:{createdAt:-1}});
             });
 
             $scope.addTask=function(newTask){
@@ -22,6 +22,13 @@ if (Meteor.isClient) {
                     createdAt:new Date()
                 });
             };
+
+            $scope.$watch('hideCompleted',function(){
+                if($scope.hideCompleted)
+                    $scope.query={checked:{$ne:true}};
+                else
+                    $scope.query={};
+            });
         }
     ]);
 }
