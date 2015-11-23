@@ -41,6 +41,10 @@ if (Meteor.isClient) {
             $scope.incompleteCount=function(){
                 return Tasks.find({checked:{$ne:true}}).count();
             };
+
+            $scope.deleteTask=function(task){
+                $meteor.call('deleteTask',task._id);
+            }
         }
     ]);
 }
