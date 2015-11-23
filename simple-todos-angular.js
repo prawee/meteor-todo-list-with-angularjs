@@ -22,12 +22,13 @@ if (Meteor.isClient) {
             });
 
             $scope.addTask=function(newTask){
-                $scope.tasks.push({
+                /*$scope.tasks.push({
                     text:newTask,
                     createdAt:new Date(),
                     owner:Meteor.userId(),
                     username:Meteor.user().username
-                });
+                });*/
+                $meteor.call('addTask',newTask);
             };
 
             $scope.$watch('hideCompleted',function(){
@@ -43,6 +44,26 @@ if (Meteor.isClient) {
         }
     ]);
 }
+
+Meteor.methods({
+    addTask:function(text){
+        if(!Meteor.userId()){
+            throw new Meteor.Error('not-authorized');
+        }
+        Tasks.insert({
+            text:text,
+            createdAt:new Date(),
+            owner:Meteor.userId(),
+            username:Meteor.user().username
+        });
+    },
+    deleteTask:function(){
+
+    },
+    setChecked:function(){
+
+    }
+});
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
